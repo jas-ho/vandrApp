@@ -1,0 +1,17 @@
+flask
+gunicorn
+numpy
+pandas
+matplotlib
+seaborn
+gspread
+oauth2client
+hashids
+flask-sqlalchemy
+psycopg2
+wtforms
+wtforms_components
+flask_login
+flask_debugtoolbar
+flask_sslify
+flask_wtf

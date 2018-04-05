@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block content %}
+<center>
+    <h1>Schicke deinen Freunden den folgenden LinK: </h1>
+    <p>{{config.VANDR_HOME}}invited/{{current_user.anon_id}}</p>
+    <h1>Oder klicke hier um ein Mail mit dem Link zu verschicken: </h1>
+    <form method=post action="/einladen">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <p><input type=submit value='Email verfassen'>
+    </form>
+</center>
+{% endblock %}

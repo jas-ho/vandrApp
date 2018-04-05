@@ -1,0 +1,119 @@
+{% extends "layout.html" %}
+{% block content %}
+<!-- CONTAINER -->
+<div class="container">
+
+    <!-- PANEL -->
+    <div class="panel panel-default">
+
+        <!-- FAQs zum Datenschutz -->
+            <!-- HEADING -->
+            <div class="panel-heading bold">
+                <span class="glyphicon glyphicon-question-sign"></span>
+                <strong>FAQs zum Datenschutz</strong>
+            </div>
+            <!-- END HEADING -->
+
+            <!-- BODY -->
+            <div class="panel-body">
+
+            <!-- ++++++++++++++++++ -->
+            <div class="accordion" id=faqAccordion>
+            <!-- ++++++++++++++++++ -->
+
+                <!-- Welche Daten speichert vandr? -->
+                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
+                    <h1 class="panel-title">
+                        <a href="#" class="ing">Welche Daten speichert vandr?</a>
+                    </h1>
+                </div>
+
+                <div id="question0" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <p>Wir speichern nur eine ID, die uns erlaubt, Dich wiederzuerkennen, und Deine email-Adresse, um Dich eventuell über Änderungen bei vandr informieren zu können.</p>
+
+                        <p>Wir speichern keine Klarnamen, Alter, Geschlecht o.ä. Wir speichern auch keine IPs oder 
+                        browser-spezifische Informationen, die Dich identifizieren könnten.</p>
+                    </div>
+                </div>
+
+
+                <!-- Welche Daten sind für Andere sichtbar? -->
+                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question1">
+                    <h1 class="panel-title">
+                        <a href="#" class="ing">Welche Daten sind für Andere sichtbar?</a>
+                    </h1>
+                </div>
+
+                <div id="question1" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <p>Alles auf vandr ist anonym. Für andere user sind immer nur der von dir gewählte nickname und Deine Punkte sichtbar. Dein echter Name oder Deine email-Adresse werden niemals von uns an Dritte weitergegeben.</p>
+                    </div>
+                </div>
+
+
+                <!-- Welche Daten werden beim login übermittelt? -->
+                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question2">
+                    <h1 class="panel-title">
+                        <a href="#" class="ing">Welche Daten werden beim Login übermittelt?</a>
+                    </h1>
+                </div>
+
+                <div id="question2" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <p>Beim Login mittels email-Adresse und Passwort wird tatsächlich nur Deine email-Adresse übermittelt, damit vandr Dich wiedererkennen kann. </p>
+
+                        <p>Beim Login mittels facebook oder google werden zusätzlich der Benutzername und die Email an vandr übermittelt, sowie einige weitere allgemeine Profil-Informationen, die Du auf google oder facebook hinterlegt hast. Leider können wir nicht verhindern, dass diese Daten mit dem login übermittelt werden. Wir nutzen diese Daten nicht, analysieren sie nicht und speichern sie in keiner Weise (mit Ausnahme der email-Adresse).</p>
+                    </div>
+                </div>
+
+                <!-- Wie kann ich meinen account löschen? -->
+                <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                    <h1 class="panel-title">
+                        <a href="#" class="ing">Wie kann ich meinen account löschen? </a>
+                    </h1>
+                </div>
+
+                <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                    <div class="panel-body">
+                        <p>Um Deinen account zu löschen, klicke auf den Link weiter unten unter "Datenschutz-Einstellungen". Dabei werden alle personen-spezifischen Daten aus unserer Datenbank gelöscht, wie auch aus der Datenbank von auth0, dem provider des Login-Dienstes.</p>
+
+                        <p>Achtung: Da wir regelmäßig Sicherungskopien unserer Datenbank erstellen, die wir eine Woche vorrätig halten, dauert es im Regelfall eine Woche bis wirklich alle Spuren deiner persönlichen Daten von unseren Servern gelöscht sind.</p>
+                    </div>
+                </div>
+
+                <!-- ++++++++++++++++++ -->
+                </div>
+                <!-- ++++++++++++++++++ -->
+
+            </div>
+            <!-- END BODY -->
+    </div>
+    <!-- END PANEL -->
+
+        <br>
+
+
+    <!-- Datenschutz-Einstellungen -->
+    <!-- PANEL -->
+    <div class="panel panel-default">
+
+        <!-- HEADING -->
+        <div class="panel-heading bold">
+            <span class="glyphicon glyphicon-cog"></span> <strong>Datenschutz-Einstellungen</strong>
+        </div>
+        <!-- END HEADING -->
+        
+        <!-- BODY -->
+        <div class="panel-body">
+            <p> Deinen Account löschen kannst du <a href="/delete_account?id={{current_user.anon_id}}" onclick="return confirm('Bist du dir sicher?')">hier.</a></p>
+            <!-- <p> Deinen Email-Einstellungen kannst du <a href="/" onclick="return confirm('Bist du dir sicher?')">hier</a> ändern</p> -->
+        </div>
+        <!-- END BODY -->
+
+    </div>
+    <!-- END PANEL -->
+
+</div>
+<!-- END CONTAINER -->
+{% endblock %}

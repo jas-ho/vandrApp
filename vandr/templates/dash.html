@@ -1,0 +1,211 @@
+{% extends "layout.html" %}
+{% block banner %} <br> {% endblock banner %}
+{% block content %}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Mei Leistung</h1>
+            <p>Dein Einsatz für Alexander Van der Bellen wird belohnt!
+            Um mitzuspielen wähle einfach eine der aktuellen oder laufenden Aktionen an:</p>
+                <div class="col-md-6">
+                    <h2>Aktuell</h2>
+                    <div class="panel panel-default">
+                        <div class="panel-heading bold">
+                            <span class="glyphicon glyphicon-bullhorn"></span> <strong>Kampagne beitreten</strong>
+                             <a class="btn btn-success pull-right" target="_blank" role="button" href=/looked_up_campaign>VdB beitreten <span class="glyphicon glyphicon-share"></span></a></div>
+                        <div class="panel-body">
+                            <p>Schreib dich bei der offiziellen Kampagne ein! Trag dich einfach <a target="_blank" href="/looked_up_campaign">auf dieser Seite</a> ein!</p>
+
+                            </div>
+                        <!--
+                        <div class="panel-footer">
+                            <div class="pull-right">  {{mys.p_campjoins}} / 5 <span class="glyphicon glyphicon-bitcoin"></span></div>
+                            <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow={{mys.p_campjoins}}
+                            aria-valuemin="0" aria-valuemax="5" style="width:{% if mys.p_campjoins == 5 %}100%{% else %}10%{% endif %}">
+                            {% if mys.p_campjoins == 5 %}100%{% else %}10%{% endif %}
+                            </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-comment"></span> <strong>Leute überzeugen</strong>
+                             <!--<a class="btn btn-success pull-right" target="_blank" role="button" href=/looked_up_campaign>placeholder <span class="glyphicon glyphicon-share"></span></a></div>-->
+
+                        </div>
+                        <div class="panel-body">
+                            <p>Wenn du dich mit nur einer Sache im Wahlkampf engagierst, dann überzeug jemanden, am 4. Dezember zur Wahl zu gehen und VdB anzukreuzen.
+                                Spenden, Kampagnen, Poster, Shares sind alles nur Mittel zu diesem einen Zweck.
+                                <div class="divider">/</div>
+                                Du hast heute schon jemanden überzeugt und eine Stimme für VdB gewonnen?
+                                <button class="btn btn-success" data-toggle="collapse" data-target="#conversation">Das muss belohnt werden: <span class="glyphicon glyphicon-chevron-down"></span> </button>
+                            <div id="conversation" class="collapse">
+                                <form class="form form-vertical" method="post" action="/dash">
+                                        {% from "_formhelpers.html" import render_field %}
+                                        {{ form.csrf_token }}
+                                            {{ render_field(form.conversation_name, placeholder='Name') }}
+                                            {{ render_field(form.conversation_date, placeholder='JJJJ-MM-TT', type='date') }}
+                                            {{ render_field(form.conversation_comment, label_visible=false, placeholder='Was du noch dazu sagen möchtest ...') }}
+                                    <button type="submit btn-success" class="btn">Eintragen!</button>
+                                </form>
+                            </div>
+                            </p>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-6">
+                    <h2>Laufend</h2>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading bold">
+                            <span class="glyphicon glyphicon-user"></span> <strong>Freunde zu vandr einladen</strong>
+
+                            <!-- <button class="btn btn-default" role="button" data-container="body" data-placement="right" data-toggle="popover" data-trigger="focus" title="Context Help" data-content="Für alle Freunde, die vandr auch beitreten bekommst du X Punkte PLUS 10% aller von Ihnen erzielter Punkte!">
+                                <span class="glyphicon glyphicon-info-sign"></span></button>
+                            <form class="pull-right" method=post action="/einladen">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                                <button class="btn btn-success" type=submit value="">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </button>
+                            </form>-->
+
+                        </div>
+                        <div class="panel-body">
+
+                            <p>Lade auch deine Freunde zu vandr ein indem du ihnen folgenden Link zukommen lässt. Für alle Punkte, die deine Freunde erzielen, bekommst du auch einen Anteil!</p>
+                            <button class="btn btn-success" data-toggle="collapse" data-target="#fbeinladen">Invite Link: <span class="glyphicon glyphicon-chevron-down"></span> </button>
+                            <div id="fbeinladen" class="collapse well well-sm">
+                                {{config.VANDR_HOME}}invited/{{current_user.anon_id}}
+                            </div>
+                        </div>
+                        <!--
+                        <div class="panel-footer">
+                            <div class="pull-right">  {{mys.p_invites}} <span class="glyphicon glyphicon-bitcoin"></span></div>
+                            <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow={% if mys.p_invites == 0 %}5{% else %}{{mys.p_invites}}{% endif %}
+                            aria-valuemin="0" aria-valuemax=100 style="width:{% if mys.p_invites == 0 %}5%{% else %}{{mys.p_invites}}%{% endif %}">
+                            {{mys.p_invites}}
+                            </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading bold"><span class="glyphicon glyphicon-gift"></span> <strong>Spenden</strong>
+                            <a class="btn btn-success pull-right"  role="button" href=/spenden>Spende aufzeichnen <span class="glyphicon glyphicon-edit"></span></a></div>
+                        <div class="panel-body">
+
+                            <p>Für Spenden an die Van der Bellen Kampagne bekommst du 5 Punkte gutgeschrieben.</p>
+                            <button class="btn btn-info" data-toggle="collapse" data-target="#demo">Info <span class="glyphicon glyphicon-chevron-down"></span> </button>
+                            <div id="demo" class="collapse">
+                                Du kannst deine Spende an die VdB Kampagne über den Button "Spende aufzeichnen" bei vandr eintragen und erhältst pro Spende und Tag 5 Punkte.
+                            </div>
+                        </div>
+                        <!--
+                        <div class="panel-footer">
+                            <div class="pull-right">  {{mys.p_donations}} <span class="glyphicon glyphicon-bitcoin"></span></div>
+                            <div class="progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{mys.p_donations}}"
+                            aria-valuemin="0" aria-valuemax="100" style="width:{{mys.p_donations}}%">
+                            {{mys.p_donations}}
+                            </div>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+
+                    <!--
+                    would be cool to generate these panels dynamically, cause availability depends on a number of  variables:
+                    - can_complete_multiple
+                    - already_completed
+                    - expires (date)
+                    - etc
+                    -->
+                    {#
+                    {% from "_formhelpers.html" import render_action %}
+                    {{ render_action(action) }}
+                    #}
+
+                </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Punkte <span class="label label-default pull-right ">{% if mys.p_total == None %}
+                               0
+                            {% else %}
+                                {{mys.p_total}}
+                            {% endif %} <span class="glyphicon glyphicon-bitcoin"></span></span></h3>
+                </div>
+                <div class="panel-body">
+                        <p>Deine erzielten Punkte: </p>
+                        <ol class="list-unstyled " >
+                            <li><span class="badge{% if mys.p_conversat > 0 %} badge-success">{{mys.p_conversat}}{% else %}">0{% endif %}</span> Punkte für gewonnene Stimmen</li>
+                            <li><span class="badge{% if mys.p_invites > 0 %} badge-success">{{mys.p_invites}}{% else %}">0{% endif %}</span> Punkte für eingeladene Freunde</li>
+                            <li><span class="badge{% if mys.p_campjoins > 0 %} badge-success">{{mys.p_campjoins}}{% else %}">0{% endif %}</span> Punkte weil du dich bei der offiziellen Kampagne eingeschrieben hast</li>
+                            <li><span class="badge{% if mys.p_donations > 0  %} badge-success">{{mys.p_donations}}{% else %}">0{% endif %}</span> Punkte für deine Spenden</li>
+                            <li><span class="badge{% if mys.p_secondary > 0  %} badge-success">{{mys.p_secondary}}{% else %}">0{% endif %}</span> Punkte, 10% der Punkte deiner eingeladenen Freunde</li>
+                            </ol>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3><a href="/bestenliste">Ranking</a> <span class="label label-default pull-right">{{mys.ranking}}. <span class="glyphicon glyphicon-arrow-up"></span></span></h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table align-top">
+                        <thead>
+                            <th>Rank</th><th>Benutzer</th><th>Punkte</th>
+                        </thead>
+                        {% for u in loc_rank %}
+                        <tr>
+                            <td>{{u.ranking}}</td>
+                            <td>{{u.nickname}}</td>
+                            <td>{{u.p_total}}</td>
+                        </tr>
+                        {% endfor %}
+                        <!--<tr>-->
+                            <!--<td>{{mys.ranking}}.</td>-->
+                            <!--<td> {% if current_user.nickname == None %}[Anonym]{% else %}{{current_user.nickname}} {% endif %}</td>-->
+                            <!--<td>{{mys.p_total}}</td>-->
+                        <!--</tr>-->
+                    </table>
+                </div>
+            </div>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading"><h4>Profil</h4></div>
+                    <div class="panel-body">
+                    {% if current_user.nickname == current_user.id %}
+                        <p>Du hast noch keinen Nickname gewählt.</p>
+                        <p><a href="/pickname">Ich möchte einen Nickname wählen.</a> </p>
+                    {% else %}
+                        <p>Dein Nickname lautet: {% if current_user.nickname == None %}[Anonym]{% else %}{{current_user.nickname}}{% endif %}<a href="/pickname" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-edit"></span> Ändern</a> </p>
+                    {% endif %}
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+$(function () {
+  $('[data-toggle="popover"]').popover();
+})
+</script>
+    <!--<p><a href="/delete_account?id={{current_user.anon_id}}" onclick="return confirm('Bist du dir sicher?')">Ich möchte meinen account löschen</a></p>-->
+{% endblock %}

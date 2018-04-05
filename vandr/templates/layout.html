@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!-- Template by Quackit.com -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <title>vandr - mir gwinnen des wieder</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS: You can use this stylesheet to override any Bootstrap styles and/or apply your own styles -->
+    <link href="{{ url_for('static', filename='css/custom.css') }}" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="icon" href="{{ url_for('static', filename = 'images/vandr_icon.jpg') }}">
+
+
+    <!-- meta properties for facebook -->
+    <meta property="og:title" content="vandr - mir gwinnen des wieder" />
+    <meta property="og:image" content="https://www.vandr.at/static/images/title6.png" />
+
+</head>
+
+<body>
+
+<script src="https://cdn.auth0.com/js/lock/10.0/lock.min.js"></script>
+<script type="text/javascript">
+    var lock = new Auth0Lock('{{config.VANDR_AUTH0_CLIENT_ID}}', '{{config.VANDR_AUTH0_DOMAIN}}', {
+        auth: {
+            redirectUrl: '{{config.VANDR_REDIRECT}}',
+            responseType: 'code',
+            params: {
+            scope: 'openid email nickname'
+            }
+        },
+        theme: {
+            primaryColor: 'grey',
+            logo: '{{ url_for('static', filename = 'images/vandr_login.png') }}'
+        },
+        languageDictionary: {
+            title: "Login"
+        }
+    });
+</script>
+
+    <!-- Navigation -->
+    <nav id="topnav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+
+
+                <a href="/" class="navbar-left">
+                    <img class="img-responsive align-top" style="max-height:50px; padding:0px;" src= "{{ url_for('static', filename = 'images/vandr_black.png') }}" alt="Home" >
+                </a>
+
+                <ul class="nav navbar-nav">
+                    <!--<li class="active"> <a href="/">Home</a></li>-->
+                    <li> <a href="faq">F.A.Q.</a> </li>
+                    <li>
+                        <a href="https://www.vanderbellen.at/" target="_blank">Offizieller VdB </a>
+                    </li>
+                </ul>
+
+<!--
+                <ul class="nav navbar-nav">
+                    {% if current_user.is_authenticated %}
+                    <li>
+                        <a href="dash">
+                            Meine Punkte
+                        </a>
+                    </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Punkte sammeln <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="about-us">
+                            <li><a href="einladen">Freunde einladen</a></li>
+							<li><a href="spenden">Spenden</a></li>
+                            <li><a href="kampagne">Kampagne beitreten</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                </ul>-->
+
+                <ul class="nav navbar-nav navbar-right align-center"> <!-- user / login area right -->
+                {% if current_user.is_authenticated %}
+                <!--<a class="navbar-brand" href={{config.VANDR_LOGOUT}}>-->
+                	<!--<span class="glyphicon glyphicon-log-out"></span>-->
+                	<!--Logout-->
+                <!--</a>-->
+
+                    <li href="#" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-user"></span> {% if current_user.nickname == None %}
+                               [Anonym]
+                            {% else %}
+                                {{current_user.nickname}}
+                            {% endif %} <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="about-us">
+							<li><a href="/pickname"><span class="glyphicon glyphicon-edit"></span>  Benutzernamen ändern</a></li>
+                            <li><a href="dash"><span class="glyphicon glyphicon-home"></span>  Mei Leistung</a></li>
+                            <li class="divider"></li>
+                            <li><a href={{config.VANDR_LOGOUT}}>
+                                <span class="glyphicon glyphicon-off"></span>  Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- mei leistung + punktezählen -->
+                    <li><p class="navbar-button btn-lg" style="margin:0px" ><a  class="btn btn-default" href="dash">Mei Leistung:
+                            {% if current_user.p_total == None %}
+                               0
+                            {% else %}
+                                {{current_user.p_total}}
+                            {% endif %} <span class="glyphicon glyphicon-bitcoin"></span></a></p>
+                    </li>
+
+                {% else %}
+                    <li><p class="navbar-button btn-lg" style="margin:0px" ><a  class="btn btn-default" onclick="lock.show()">Mitmachen!</a></p>
+                    </li>
+                {% endif %}
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    {% block banner %}
+	<div style="background:transparent !important" class="jumbotron feature">
+        <center>
+            {% if showing_home == True %}
+                <img class="img-responsive img-rounded" src= "{{ url_for('static', filename = 'images/title6.png') }}" alt="previous" border="0" tite="Previous">
+            {% else %}
+                <img class="img-responsive img-rounded" src= "{{ url_for('static', filename = 'images/title5.png') }}" alt="previous" border="0" tite="Previous">
+            {% endif %}
+        </center>
+
+	</div>
+    {% endblock banner %}
+
+    <!-- To display flash messages from flask -->
+    <!-- Note: The following values are recommended by the docs as category for flash
+        ``'message'`` for any kind of message,
+        ``'error'`` for errors,
+        ``'info'`` for information messages and
+        ``'warning'`` for warnings. 
+    implemented in bootstrap.css are the following:
+    'success' (green), 'info' (blue), 'warning' (yellow), 'danger' (red)
+    -->
+    <!-- auto-close success and info messages -->
+    <script type="text/javascript">
+        window.setTimeout(function () {
+            $(".alert-success").fadeTo(300, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+            }, 5000);
+    </script>
+    <script type="text/javascript">
+        window.setTimeout(function () {
+            $(".alert-info").fadeTo(500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+            }, 5000);
+    </script>
+    <div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                    <center>
+                  {{ message }}</center>
+                </div>
+            {% endfor %}
+          {% endif %}
+      {% endwith %}
+    </div>
+    <!-- To display flash messages from flask END -->
+    
+    <!-- Here we insert the actual content via jinja -->
+    {% block content %}{% endblock content%}
+    <!-- Here we insert the actual content via jinja END -->
+
+	<footer>
+
+        <div class="small-print">
+        	<div class="container">
+                <!-- added register button for playing around with wtforms -->
+        		<p><a href="/feedback" target="_blank" data-toggle="tooltip" title="Gib uns Feedback zu vandr!">Feedback</a> | <a href="kontakt">Kontakt / Mitentwickeln</a> | <a href="impressum">Impressum</a> | <a href="datenschutz">Datenschutz</a> </p>
+        		<p>Copyright &copy; vandr.at 2016 </p>
+        	</div>
+        </div>
+	</footer>
+
+	
+    <!-- jQuery -->
+    <script src="{{ url_for('static', filename='js/jquery-1.11.3.min.js') }}"></script>
+
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+	
+	<!-- IE10 viewport bug workaround -->
+    <script src="{{ url_for('static', filename='js/ie10-viewport-bug-workaround.js') }}"></script>
+	
+	<!-- Placeholder Images -->
+    <script src="{{ url_for('static', filename='js/holder.min.js') }}"></script>
+	
+</body>
+
+</html>

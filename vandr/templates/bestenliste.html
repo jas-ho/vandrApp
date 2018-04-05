@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+        <!-- Content -->
+    <div class="container">
+
+        <!-- Feature Row -->
+        <div class="row">
+
+            <article class="col-md-4 article-intro">
+                <!--
+                <a href="#">
+                    <img class="img-responsive img-rounded" src= "{{ url_for('static', filename = 'images/ranking.png') }}" alt="" >
+                </a>
+                -->
+                <style>
+                table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+                <table class="table">
+                    <tr>
+                        <td></td>
+                        <td>Nickname</td>
+                        <td>Points</td>
+                    </tr>
+                    {% for u in users %}
+                    <tr>
+                        <td>{{u.ranking}}</td>
+                        <td>{{u.nickname}}</td>
+                        <td>{{u.p_total}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+
+            </article>
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container -->
+{% endblock %}

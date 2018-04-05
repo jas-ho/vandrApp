@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span2"></div>
+        <div class="span8">
+        <center>
+          <h1> <a href="https://www.vanderbellen.at/spenden" target="_blank">Spenden kann man hier!</a></h1>
+        </center>
+        </div>
+        <div class="span2"></div>
+    </div>
+</div>
+    {% from "_formhelpers.html" import render_field %}
+<center>
+    <form method=post action="/spenden">
+        {{ form.csrf_token }}
+        <dl>
+            {{ render_field(form.date_donation) }}
+            {{ render_field(form.amount_donation) }}
+            {{ render_field(form.published_name) }}
+        </dl>
+        <p><input type=submit value=Abschicken>
+    </form>
+</center>
+{% endblock %}

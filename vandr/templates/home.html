@@ -1,0 +1,68 @@
+{% extends "layout.html" %}
+{% block content %}
+        <!-- Content -->
+<div class="container-fluid">
+
+    <!-- Feature Row -->
+    <div class="row-fluid">
+        <article class="col-md-4 article-intro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        Leute
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <img class="img-responsive img-rounded" src= "https://jas-ho.github.io/vandr.plots/static/users_cum.png" alt="Mitspieler im Lauf der Zeit" align="middle" style="margin:0px auto;display:block">
+                </div>
+        </article>
+
+        <article class="col-md-4 article-intro">
+            <!--
+            <a href="#">
+                <img class="img-responsive img-rounded" src= "{{ url_for('static', filename = 'images/ranking.png') }}" alt="" >
+            </a>
+            -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        <a href="/bestenliste">Bestenliste</a>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <thead>
+                        <th  style="text-align:center">Rang</th>
+                        <th style="text-align:center">Nickname</th>
+                        <th style="text-align:center">Punkte</th>
+                        </thead>
+                        {% for u in users %}
+                        <tr>
+                            <td>{{u.ranking}}</td>
+                            <td>{{u.nickname}}</td>
+                            <td>{{u.p_total}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+        </article>
+
+        <article class="col-md-4 article-intro">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>
+                        Spenden
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <img class="img-responsive img-rounded" src= "https://jas-ho.github.io/vandr.plots/static/spenden_cum.png" alt="Gesammelte Spenden im Lauf der Zeit" align="middle" style="margin:0px auto;display:block">
+                </div>
+        </article>
+    </div>
+    <!-- /.row -->
+</div>
+<div class="container">
+    <!-- /.container -->
+    {% endblock %}

@@ -1,0 +1,45 @@
+{
+	"name": "vandr",
+	"description": "",
+	"scripts": {},
+	"env": {
+		"HEROKU_APP_NAME": {
+			"required": true
+		},
+		"HEROKU_PARENT_APP_NAME": {
+			"required": true
+		},
+		"HOSTNAME": {
+			"description": "Used to determine where in the heroku pipeline we are running.",
+			"value": "heroku-review"
+		},
+		"DATABASE_URL": {
+			"required": true
+		},
+		"AUTH0_DOMAIN": {
+			"required": true
+		},
+		"AUTH0_CLIENT_ID": {
+			"required": true
+		},
+		"AUTH0_CLIENT_SECRET": {
+			"required": true
+		},
+		"AUTH0_DELETION_TOKEN": {
+			"required": true
+		},
+		"ERROR_PAGE_URL": {
+			"required": true
+		},
+		"MAINTENANCE_PAGE_URL": {
+			"required": true
+		}
+	},
+	"formation": {},
+	"addons": [
+
+	],
+	"buildpacks": [
+
+	]
+}

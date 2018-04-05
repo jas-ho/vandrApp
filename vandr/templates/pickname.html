@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+    {% if kind == 'first' %}
+        <p class="text-success">Du hast dich zum ersten Mal eingeloggt, willkommen! Such dir deinen Nickname aus:</p>
+    {% elif kind == 'duplicate' %}
+        <p class="text-error">Den Nickname gibt's leider schon. Such dir einen anderen Nickname aus:</p>
+    {% elif kind == 'change' %}
+        <p class="text-info">Du möchtest deinen Nickname ändern. Such dir einen neuen Nickname aus:</p>
+    {% endif %}
+
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post action="/pickname">
+        {{ form.csrf_token }}
+        <dl>
+            {{ render_field(form.nickname) }}
+        </dl>
+        <p><input class=btn type=submit value=Ändern>
+    </form>
+</div>
+</div></div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="span2"></div>
+        <div class="span8">
+            <h1>Willkommen!</h1>
+            <ul class="list-unstyled">
+                {% if inviter.nickname is none %}
+                    <li>Schön, dass du zu vandr eingeladen wurdest. Um einen Account anzulegen, klick auf den bald fetten roten derzeit noch kleinen grauen Knopf:</li>
+                {% else %}
+                    <li>Schön, dass dich {{inviter.nickname}} eingeladen hat. Um einen Account anzulegen, klick auf den bald fetten roten derzeit noch kleinen grauen Knopf:</li>
+                {% endif %}
+            </ul>
+            <center>
+                <button type="button" onclick="lock.show()">Account erstellen</button>
+            </center>
+        </div>
+        <div class="span2"></div>
+    </div>
+</div>
+
+{% endblock %}

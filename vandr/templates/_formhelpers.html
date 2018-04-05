@@ -1,0 +1,39 @@
+{% macro render_field(field) %}
+  <dt>{{ field.label }}
+  <dd>{{ field(**kwargs)|safe }}
+  {% if field.errors %}
+    <ul class=errors>
+    {% for error in field.errors %}
+      <li>{{ error }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+  </dd>
+{% endmacro %}
+
+{# would be really nice to have some components#}
+{% macro render_action(action) %}
+  <div class="panel panel-default">
+        <!-- item header -->
+    <div class="panel-heading">{{action.header}}<a class="btn btn-success pull-right"  role="button" href={{action.href}}>{{action.button_text}}</a></div>
+    <div class="panel-body">
+        <!-- item body -->
+        <p> {{action.body}}</p>
+        <!-- collapsable context info -->
+        <button class="btn btn-info" data-toggle="collapse" data-target="#demo">Context <span class="glyphicon glyphicon-chevron-down"></span></button>
+        <div id="demo" class="collapse">
+            lorem ipsum ich  weiß nicht wies weitergeht
+        </div>
+        <!-- item footer / progress bar -->
+      <div class="panel-footer">
+        <div class="pull-right">  {{action.max_points}} <span class="glyphicon glyphicon-star"></span></div>
+        <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{action.current_points}}"
+        aria-valuemin="0" aria-valuemax="{{action.max_points}}" style="width:{{action.current_points}}">
+        {{action.current_points}}
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endmacro %}
